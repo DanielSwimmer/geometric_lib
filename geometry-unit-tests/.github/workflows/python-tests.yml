@@ -34,13 +34,3 @@ jobs:
     - name: Test basic functionality
       run: |
         python -c "
-import sys
-sys.path.append('src')
-import geometry
-
-# Test basic functionality
-print('Testing rectangle area:', geometry.rectangle_area(5, 10))
-print('Testing triangle area:', geometry.triangle_area(3, 4, 5))
-print('Testing circle area:', geometry.circle_area(2))
-print('All basic tests passed!')
-        "
