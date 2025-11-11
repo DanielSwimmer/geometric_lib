@@ -1,0 +1,46 @@
+name: Python Unit Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Display Python version
+      run: python -c "import sys; print(f'Python {sys.version}')"
+    
+    - name: Run unit tests
+      run: |
+        python -m unittest discover -v
+      env:
+        PYTHONPATH: src
+    
+    - name: Test basic functionality
+      run: |
+        python -c "
+import sys
+sys.path.append('src')
+import geometry
+
+# Test basic functionality
+print('Testing rectangle area:', geometry.rectangle_area(5, 10))
+print('Testing triangle area:', geometry.triangle_area(3, 4, 5))
+print('Testing circle area:', geometry.circle_area(2))
+print('All basic tests passed!')
+        "
