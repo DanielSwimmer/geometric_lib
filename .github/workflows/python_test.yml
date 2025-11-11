@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run tests
-      run: python -m unittest discover -v
+      run: python -m unittest discover -p "*_tests.py" -v
