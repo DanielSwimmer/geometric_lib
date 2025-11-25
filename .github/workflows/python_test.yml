@@ -1,29 +1,16 @@
-# name: Python Unit Tests
-
-# on: push
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v4
-#     - name: Run tests
-#       run: python -m unittest discover -p "*_tests.py" -v
 name: Python Unit Tests
 
 on: push
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+  test-linux:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-    - name: Run tests
-      run: python -m unittest discover -p "*_tests.py" -v
+    - uses: actions/checkout@v5
+    - run: python -m unittest discover -p "*_tests.py" -v
+
+  test-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v5
+    - run: python -m unittest discover -p "*_test.py" -v 
