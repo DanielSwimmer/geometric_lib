@@ -13,4 +13,4 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v5
-    - run: python -m unittest discover -p "*_test.py" -v 
+    - run: python -m unittest discover -p "*_tests.py" -v 
